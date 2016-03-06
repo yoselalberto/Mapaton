@@ -14,7 +14,9 @@ rutas <- readRDS("Datos/Rutas_viales.Rds")
 
 
 
-# mapa en leaflet
+## Mapas en leaflet
+
+# rutas antiguas
 mapa <- leaflet() %>%
         setView(-99.168, 19.383, zoom = 12) %>%
         addProviderTiles("CartoDB.PositronNoLabels",
@@ -24,5 +26,5 @@ mapa <- leaflet() %>%
                     weight = 4) %>%
         addPolygons(data = delegaciones, weight = 2, color = "darkgrey", 
                     fill = FALSE, opacity = 1) %>%
-        addPolylines(data = rutas, color = "#7f7f7f", opacity = 0.95, weight = 1.5)
+        addPolylines(data = rutas, color = "#0B2161", opacity = 0.95, weight = 1.5)
 mapa
