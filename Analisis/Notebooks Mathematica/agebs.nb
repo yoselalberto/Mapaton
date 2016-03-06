@@ -1,0 +1,646 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     20395,        637]
+NotebookOptionsPosition[     18253,        574]
+NotebookOutlinePosition[     18607,        590]
+CellTagsIndexPosition[     18564,        587]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"data", "=", 
+   RowBox[{"Import", "[", 
+    RowBox[{
+    "\"\<Documents/MORLAN/mapatonGTFS/shapes.txt\>\"", ",", "\"\<CSV\>\""}], 
+    "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.666224944314109*^9, 3.666224986027755*^9}, {
+  3.666225036782935*^9, 3.6662250483090353`*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"dfpol", "=", 
+    RowBox[{"Import", "[", 
+     RowBox[{
+     "\"\<Documents/MORLAN/INEGI/shps/DF/df_estatal.shp\>\"", ",", 
+      "\"\<Data\>\""}], "]"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"dfpola", "=", 
+   RowBox[{"Import", "[", 
+    RowBox[{
+    "\"\<Documents/MORLAN/INEGI/shps/DF/df_ageb_urb.shp\>\"", ",", 
+     "\"\<Data\>\""}], "]"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.666226313884612*^9, 3.666226381645348*^9}, {
+  3.6662315983353777`*^9, 3.666231610836265*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"poles", "=", 
+   RowBox[{"dfpol", "[", 
+    RowBox[{"[", 
+     RowBox[{"1", ",", "2", ",", "2"}], "]"}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.666226386806929*^9, 3.666226396188588*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"polageb", "=", 
+   RowBox[{"dfpola", "[", 
+    RowBox[{"[", 
+     RowBox[{"1", ",", "2", ",", "2"}], "]"}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.666231628676467*^9, 3.666231638379567*^9}, 
+   3.6662318856303453`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"agebid", "=", 
+   RowBox[{"dfpola", "[", 
+    RowBox[{"[", 
+     RowBox[{"1", ",", "4", ",", "2", ",", "1", ",", "2"}], "]"}], "]"}]}], 
+  ";"}]], "Input",
+ CellChangeTimes->{{3.666238185108665*^9, 3.6662382101802683`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"data", "[", 
+  RowBox[{"[", "1", "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.6662250524136677`*^9, 3.666225055700672*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"edata", "=", 
+   RowBox[{"Map", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"#", "[", 
+         RowBox[{"[", "1", "]"}], "]"}], ",", 
+        RowBox[{"#", "[", 
+         RowBox[{"[", "3", "]"}], "]"}], ",", 
+        RowBox[{"#", "[", 
+         RowBox[{"[", "2", "]"}], "]"}], ",", 
+        RowBox[{"#", "[", 
+         RowBox[{"[", "4", "]"}], "]"}]}], "}"}], "&"}], ",", "data"}], 
+    "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.666225494398134*^9, 3.666225539228508*^9}}],
+
+Cell[BoxData[
+ RowBox[{"edata", "[", 
+  RowBox[{"[", 
+   RowBox[{"-", "1"}], "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.6662250589184923`*^9, 3.666225062260549*^9}, 
+   3.66622554231706*^9}],
+
+Cell[BoxData[
+ RowBox[{"edata", "//", "Length"}]], "Input",
+ CellChangeTimes->{{3.666225067583625*^9, 3.66622507023617*^9}, 
+   3.666225545989232*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"ndata", "=", 
+   RowBox[{"edata", "[", 
+    RowBox[{"[", 
+     RowBox[{
+      RowBox[{"2", ";;", 
+       RowBox[{"-", "1"}]}], ",", 
+      RowBox[{"{", 
+       RowBox[{"1", ",", "2", ",", "3"}], "}"}]}], "]"}], "]"}]}], 
+  ";"}]], "Input",
+ CellChangeTimes->{{3.6662250781158533`*^9, 3.666225100423243*^9}, 
+   3.666225548900071*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"rutas", "=", 
+   RowBox[{"GatherBy", "[", 
+    RowBox[{"ndata", ",", "First"}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.666225193364156*^9, 3.666225209110075*^9}}],
+
+Cell[BoxData[
+ RowBox[{"rutas", "//", "Length"}]], "Input",
+ CellChangeTimes->{{3.666225212186225*^9, 3.6662252152542973`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"rutid", "=", 
+   RowBox[{"Map", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"#", "[", 
+       RowBox[{"[", 
+        RowBox[{"1", ",", "1"}], "]"}], "]"}], "&"}], ",", "rutas"}], "]"}]}],
+   ";"}]], "Input",
+ CellChangeTimes->{{3.666237930739142*^9, 3.666237973391947*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"rutaspol", "=", 
+   RowBox[{"rutas", "[", 
+    RowBox[{"[", 
+     RowBox[{"All", ",", "All", ",", 
+      RowBox[{"{", 
+       RowBox[{"2", ",", "3"}], "}"}]}], "]"}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.666225309242833*^9, 3.666225337356914*^9}}],
+
+Cell[BoxData[
+ RowBox[{"rutaspol", "//", "Length"}]], "Input",
+ CellChangeTimes->{{3.66622533888868*^9, 3.6662253458749437`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"rutasl", "=", 
+   RowBox[{"Line", "/@", "rutaspol"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.666225838305892*^9, 3.6662258387728148`*^9}, {
+  3.666225875367443*^9, 3.666225925079143*^9}}],
+
+Cell[BoxData[
+ RowBox[{"Graphics", "[", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"EdgeForm", "[", 
+     RowBox[{"{", "Black", "}"}], "]"}], ",", 
+    RowBox[{"RGBColor", "[", 
+     RowBox[{"0.83", ",", "0.83", ",", "0.83"}], "]"}], ",", "polageb"}], 
+   "}"}], "]"}]], "Input",
+ CellChangeTimes->{{3.666231837330954*^9, 3.6662318765822983`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"Graphics", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"EdgeForm", "[", 
+      RowBox[{"{", 
+       RowBox[{"Black", ",", 
+        RowBox[{"Thickness", "[", "0.001", "]"}]}], "}"}], "]"}], ",", 
+     RowBox[{"RGBColor", "[", 
+      RowBox[{"0.83", ",", "0.83", ",", "0.83"}], "]"}], ",", "poles", ",", 
+     RowBox[{"EdgeForm", "[", 
+      RowBox[{"{", 
+       RowBox[{"Black", ",", 
+        RowBox[{"Thickness", "[", "0.0001", "]"}]}], "}"}], "]"}], ",", 
+     RowBox[{"RGBColor", "[", 
+      RowBox[{"0.83", ",", "0.83", ",", "0.83"}], "]"}], ",", "polageb", ",", 
+     
+     RowBox[{"Darker", "[", "Red", "]"}], ",", "rutasl"}], "}"}], ",", 
+   RowBox[{"ImageSize", "\[Rule]", "3000"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.666225934105247*^9, 3.666225974709291*^9}, {
+  3.666226416102601*^9, 3.666226494691866*^9}, {3.666226564291627*^9, 
+  3.6662265643723392`*^9}, {3.6662317550484257`*^9, 3.666231760108882*^9}, {
+  3.666231803084128*^9, 3.666231824710503*^9}, {3.666231904222953*^9, 
+  3.6662319043623943`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"list", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"4.4", ",", "14"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"6.7", ",", "15.25"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"6.9", ",", "12.8"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"9.5", ",", "14.9"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"13.2", ",", "11.9"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"10.3", ",", "12.3"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"6.8", ",", "9.5"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"13.3", ",", "7.7"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"0.6", ",", "1.1"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"1.3", ",", "2.4"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"2.45", ",", "4.7"}], "}"}]}], "}"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.666233329105939*^9, 3.666233329107128*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"plist", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"Line", "[", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"20", ",", "10"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"20", ",", "0"}], "}"}]}], "}"}], "]"}], ",", 
+     RowBox[{"Polygon", "[", "list", "]"}]}], "}"}]}], ";"}], "\n", 
+ RowBox[{"Graphics`Mesh`IntersectQ", "[", "plist", "]"}], "\n", 
+ RowBox[{"Graphics", "[", 
+  RowBox[{"MapThread", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"{", "##", "}"}], "&"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"Red", ",", "Blue"}], "}"}], ",", "plist"}], "}"}]}], "]"}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.666233282697173*^9, 3.6662332826982937`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"rutasl", "[", 
+  RowBox[{"[", "1", "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.666233359047988*^9, 3.6662333759858303`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"plist", "=", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"rutasl", "[", 
+     RowBox[{"[", "1", "]"}], "]"}], ",", 
+    RowBox[{"polageb", "[", 
+     RowBox[{"[", "1", "]"}], "]"}]}], "}"}]}]], "Input",
+ CellChangeTimes->{{3.666233341708087*^9, 3.66623334233664*^9}, {
+  3.666233382578918*^9, 3.666233445865152*^9}}],
+
+Cell[BoxData[
+ RowBox[{"AbsoluteTiming", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"plist", "=", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"rutasl", "[", 
+       RowBox[{"[", "1", "]"}], "]"}], ",", 
+      RowBox[{"polageb", "[", 
+       RowBox[{"[", "1", "]"}], "]"}]}], "}"}]}], ";", "\[IndentingNewLine]", 
+   
+   RowBox[{"Graphics`Mesh`IntersectQ", "[", "plist", "]"}]}], "]"}]], "Input",\
+
+ CellChangeTimes->{{3.6662335920730543`*^9, 3.666233617021327*^9}}],
+
+Cell[BoxData[
+ RowBox[{"rutasl", "//", "Length"}]], "Input",
+ CellChangeTimes->{{3.666233558615913*^9, 3.66623356659371*^9}}],
+
+Cell[BoxData[
+ RowBox[{"polageb", "//", "Length"}]], "Input",
+ CellChangeTimes->{{3.6662335699843197`*^9, 3.666233575649268*^9}}],
+
+Cell[BoxData[
+ RowBox[{"646", "*", "2432", "*", 
+  "0.00116700000000000006852851619498778746`3.0876707693249945"}]], "Input",
+ CellChangeTimes->{{3.666233655481944*^9, 3.666233666937199*^9}}],
+
+Cell[BoxData[
+ RowBox[{"N", "[", 
+  RowBox[{"1830", "/", "60"}], "]"}]], "Input",
+ CellChangeTimes->{{3.6662336869334993`*^9, 3.666233703541628*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"compara", "[", 
+    RowBox[{"ruta_", ",", "polis_"}], "]"}], ":=", 
+   RowBox[{"Flatten", "[", 
+    RowBox[{"Position", "[", 
+     RowBox[{
+      RowBox[{"Map", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Graphics`Mesh`IntersectQ", "[", 
+          RowBox[{"{", 
+           RowBox[{"ruta", ",", "#"}], "}"}], "]"}], "&"}], ",", "polis"}], 
+       "]"}], ",", "True"}], "]"}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.6662347008330107`*^9, 3.6662347367033653`*^9}, {
+  3.666234773668185*^9, 3.666234813083541*^9}, {3.666234929915403*^9, 
+  3.6662349517994747`*^9}, {3.6662357435409307`*^9, 3.6662357451145573`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"test", "=", 
+   RowBox[{"compara", "[", 
+    RowBox[{
+     RowBox[{"rutasl", "[", 
+      RowBox[{"[", "1", "]"}], "]"}], ",", "polageb"}], "]"}]}], 
+  ";"}]], "Input",
+ CellChangeTimes->{{3.666234854257266*^9, 3.666234873721229*^9}}],
+
+Cell[BoxData[
+ RowBox[{"AbsoluteTiming", "[", 
+  RowBox[{
+   RowBox[{"compara", "[", 
+    RowBox[{
+     RowBox[{"rutasl", "[", 
+      RowBox[{"[", "1", "]"}], "]"}], ",", "polageb"}], "]"}], ";"}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.666234882876554*^9, 3.666234923123426*^9}, {
+  3.666234960162056*^9, 3.6662349605505123`*^9}, {3.666235765788032*^9, 
+  3.666235774063198*^9}}],
+
+Cell[BoxData[
+ RowBox[{"2.54896099999999981022824613319244235754`6.426963103941372", "*", 
+  RowBox[{"700", "/", "60"}]}]], "Input",
+ CellChangeTimes->{{3.6662357845687513`*^9, 3.666235794511223*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"nutest", "=", 
+   RowBox[{"Map", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"compara", "[", 
+       RowBox[{"#", ",", "polageb"}], "]"}], "&"}], ",", "rutasl"}], "]"}]}], 
+  ";"}]], "Input",
+ CellChangeTimes->{{3.6662350455552692`*^9, 3.6662350724037857`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"nutest", "[", 
+  RowBox[{"[", "2", "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.666237710060206*^9, 3.666237717294643*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"ageber", "[", "data_", "]"}], ":=", 
+  RowBox[{"Map", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"agebid", "[", 
+      RowBox[{"[", "#", "]"}], "]"}], "&"}], ",", "data"}], "]"}]}]], "Input",\
+
+ CellChangeTimes->{{3.6662382456169577`*^9, 3.666238282369296*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"jstest", "=", 
+   RowBox[{"MapIndexed", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"\"\<Ruta\>\"", "\[Rule]", 
+         RowBox[{"rutid", "[", 
+          RowBox[{"[", 
+           RowBox[{"First", "[", "#2", "]"}], "]"}], "]"}]}], ",", 
+        RowBox[{"\"\<AGEBs\>\"", "\[Rule]", 
+         RowBox[{"ageber", "[", "#1", "]"}]}]}], "}"}], "&"}], ",", 
+     "nutest"}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.666237748137714*^9, 3.66623786243711*^9}, {
+  3.666237997727137*^9, 3.6662380031331778`*^9}, {3.666238293464772*^9, 
+  3.6662382963202*^9}}],
+
+Cell[BoxData[
+ RowBox[{"jstest", "[", 
+  RowBox[{"[", "1", "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.6662378653081408`*^9, 3.666237868474601*^9}}],
+
+Cell[BoxData[
+ RowBox[{"Export", "[", 
+  RowBox[{
+  "\"\<Documents/MORLAN/mapatonGTFS/rutxageb.json\>\"", ",", "jstest", ",", 
+   "\"\<JSON\>\""}], "]"}]], "Input",
+ CellChangeTimes->{{3.6662379820151377`*^9, 3.666238085191964*^9}}],
+
+Cell[BoxData[
+ RowBox[{"dendata", "=", 
+  RowBox[{
+   RowBox[{"Flatten", "[", "nutest", "]"}], "//", "Tally"}]}]], "Input",
+ CellChangeTimes->{{3.666238357047011*^9, 3.666238374597827*^9}, {
+  3.6662384326750727`*^9, 3.666238439409254*^9}}],
+
+Cell[BoxData[
+ RowBox[{"Sort", "[", 
+  RowBox[{"dendata", "[", 
+   RowBox[{"[", 
+    RowBox[{"All", ",", "2"}], "]"}], "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.666238541813238*^9, 3.666238543568327*^9}, {
+  3.666243022842127*^9, 3.666243042445671*^9}}],
+
+Cell[BoxData[
+ RowBox[{"ejedat", "=", 
+  RowBox[{"Transpose", "[", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"dendata", "[", 
+      RowBox[{"[", 
+       RowBox[{"All", ",", "1"}], "]"}], "]"}], ",", 
+     RowBox[{"N", "[", 
+      RowBox[{"Rescale", "[", 
+       RowBox[{"dendata", "[", 
+        RowBox[{"[", 
+         RowBox[{"All", ",", "2"}], "]"}], "]"}], "]"}], "]"}]}], "}"}], 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.6662384421005507`*^9, 3.666238451440545*^9}, {
+  3.666238553932055*^9, 3.666238591766363*^9}, {3.6662387159964952`*^9, 
+  3.666238720068193*^9}}],
+
+Cell[BoxData[
+ RowBox[{"jasden", "=", 
+  RowBox[{"Map", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\"\<id\>\"", "->", 
+        RowBox[{"agebid", "[", 
+         RowBox[{"[", 
+          RowBox[{"#", "[", 
+           RowBox[{"[", "1", "]"}], "]"}], "]"}], "]"}]}], ",", 
+       RowBox[{"\"\<densidad\>\"", "->", 
+        RowBox[{"#", "[", 
+         RowBox[{"[", "2", "]"}], "]"}]}]}], "}"}], "&"}], ",", "ejedat"}], 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.66624101784593*^9, 3.6662410365539*^9}, {
+  3.666241077681072*^9, 3.6662411448983507`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"Export", "[", 
+  RowBox[{
+  "\"\<Documents/MORLAN/mapatonGTFS/agebDen.json\>\"", ",", "jasden", ",", 
+   "\"\<JSON\>\""}], "]"}]], "Input",
+ CellChangeTimes->{{3.6662411959741488`*^9, 3.666241203490918*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"nepoldat", "=", 
+   RowBox[{"Map", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Opacity", "[", 
+         RowBox[{"#", "[", 
+          RowBox[{"[", "2", "]"}], "]"}], "]"}], ",", 
+        RowBox[{"polageb", "[", 
+         RowBox[{"[", 
+          RowBox[{"#", "[", 
+           RowBox[{"[", "1", "]"}], "]"}], "]"}], "]"}]}], "}"}], "&"}], ",", 
+     "ejedat"}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.666238731406789*^9, 3.666238788954191*^9}}],
+
+Cell[BoxData[
+ RowBox[{"pl", "=", 
+  RowBox[{"Graphics", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"EdgeForm", "[", 
+       RowBox[{"{", 
+        RowBox[{"Black", ",", 
+         RowBox[{"Thickness", "[", "0.001", "]"}]}], "}"}], "]"}], ",", 
+      "White", ",", "poles", ",", 
+      RowBox[{"EdgeForm", "[", 
+       RowBox[{"{", 
+        RowBox[{"Black", ",", 
+         RowBox[{"Thickness", "[", "0.00001", "]"}]}], "}"}], "]"}], ",", 
+      "White", ",", "polageb", ",", 
+      RowBox[{"Darker", "[", "Red", "]"}], ",", "nepoldat"}], "}"}], ",", 
+    RowBox[{"ImageSize", "\[Rule]", "1000"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.666238625916299*^9, 3.6662386967946873`*^9}, {
+  3.666238803386963*^9, 3.6662388162152042`*^9}, {3.6662389517244453`*^9, 
+  3.666238952372201*^9}, {3.666239152992709*^9, 3.666239170326647*^9}, {
+  3.666239211009796*^9, 3.6662392207043943`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"Export", "[", 
+  RowBox[{
+  "\"\<Pictures/MORLAN/densidadrutas2.png\>\"", ",", "pl", ",", "\"\<PNG\>\"",
+    ",", 
+   RowBox[{"ImageResolution", "\[Rule]", "200"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.666238961618868*^9, 3.666239031386454*^9}, 
+   3.666239234558311*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"ruteo", "[", "pos_", "]"}], ":=", 
+  RowBox[{"Map", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"rutid", "[", 
+      RowBox[{"[", "#", "]"}], "]"}], "&"}], ",", 
+    RowBox[{"Flatten", "[", 
+     RowBox[{"Position", "[", 
+      RowBox[{"nutest", ",", 
+       RowBox[{"_", "?", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"MemberQ", "[", 
+            RowBox[{"#", ",", "pos"}], "]"}], "===", "True"}], "&"}], 
+         ")"}]}]}], "]"}], "]"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.666260250060274*^9, 3.666260272131178*^9}, {
+  3.666260319278145*^9, 3.666260323420188*^9}, {3.6662603951813107`*^9, 
+  3.6662605026036*^9}}],
+
+Cell[BoxData[
+ RowBox[{"ruteo", "[", "1", "]"}]], "Input",
+ CellChangeTimes->{{3.666260517813759*^9, 3.666260531733096*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"nerut", "=", 
+   RowBox[{"Map", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"\"\<id\>\"", "\[Rule]", 
+         RowBox[{"agebid", "[", 
+          RowBox[{"[", "#", "]"}], "]"}]}], ",", 
+        RowBox[{"\"\<rutas\>\"", "->", 
+         RowBox[{"ruteo", "[", "#", "]"}]}]}], "}"}], "&"}], ",", 
+     RowBox[{"Range", "[", "2432", "]"}]}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.66626054122225*^9, 3.6662606320463533`*^9}}],
+
+Cell[BoxData["nerut"], "Input",
+ CellChangeTimes->{{3.666260883190535*^9, 3.666260883762495*^9}}],
+
+Cell[BoxData[
+ RowBox[{"Export", "[", 
+  RowBox[{
+  "\"\<Documents/MORLAN/mapatonGTFS/agebxrut.json\>\"", ",", "nerut", ",", 
+   "\"\<JSON\>\""}], "]"}]], "Input",
+ CellChangeTimes->{{3.666260903933969*^9, 3.66626092727286*^9}}]
+},
+WindowSize->{1183, 814},
+WindowMargins->{{28, Automatic}, {Automatic, 0}},
+FrontEndVersion->"10.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (June 27, \
+2014)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 312, 8, 28, "Input"],
+Cell[873, 30, 574, 16, 63, "Input"],
+Cell[1450, 48, 231, 6, 28, "Input"],
+Cell[1684, 56, 262, 7, 28, "Input"],
+Cell[1949, 65, 258, 7, 28, "Input"],
+Cell[2210, 74, 148, 3, 28, "Input"],
+Cell[2361, 79, 553, 17, 28, "Input"],
+Cell[2917, 98, 193, 5, 28, "Input"],
+Cell[3113, 105, 150, 3, 28, "Input"],
+Cell[3266, 110, 368, 12, 28, "Input"],
+Cell[3637, 124, 206, 5, 28, "Input"],
+Cell[3846, 131, 127, 2, 28, "Input"],
+Cell[3976, 135, 310, 10, 28, "Input"],
+Cell[4289, 147, 293, 8, 28, "Input"],
+Cell[4585, 157, 129, 2, 28, "Input"],
+Cell[4717, 161, 224, 5, 28, "Input"],
+Cell[4944, 168, 345, 9, 28, "Input"],
+Cell[5292, 179, 1062, 24, 46, "Input"],
+Cell[6357, 205, 911, 27, 46, "Input"],
+Cell[7271, 234, 775, 24, 63, "Input"],
+Cell[8049, 260, 150, 3, 28, "Input"],
+Cell[8202, 265, 337, 9, 28, "Input"],
+Cell[8542, 276, 476, 13, 63, "Input"],
+Cell[9021, 291, 125, 2, 28, "Input"],
+Cell[9149, 295, 129, 2, 28, "Input"],
+Cell[9281, 299, 191, 3, 28, "Input"],
+Cell[9475, 304, 149, 3, 28, "Input"],
+Cell[9627, 309, 680, 17, 28, "Input"],
+Cell[10310, 328, 268, 8, 28, "Input"],
+Cell[10581, 338, 383, 10, 28, "Input"],
+Cell[10967, 350, 200, 3, 28, "Input"],
+Cell[11170, 355, 299, 9, 28, "Input"],
+Cell[11472, 366, 148, 3, 28, "Input"],
+Cell[11623, 371, 297, 9, 28, "Input"],
+Cell[11923, 382, 631, 17, 28, "Input"],
+Cell[12557, 401, 150, 3, 28, "Input"],
+Cell[12710, 406, 232, 5, 28, "Input"],
+Cell[12945, 413, 240, 5, 28, "Input"],
+Cell[13188, 420, 257, 6, 28, "Input"],
+Cell[13448, 428, 574, 16, 28, "Input"],
+Cell[14025, 446, 587, 17, 28, "Input"],
+Cell[14615, 465, 231, 5, 28, "Input"],
+Cell[14849, 472, 527, 16, 28, "Input"],
+Cell[15379, 490, 903, 21, 46, "Input"],
+Cell[16285, 513, 299, 7, 28, "Input"],
+Cell[16587, 522, 697, 20, 28, "Input"],
+Cell[17287, 544, 124, 2, 28, "Input"],
+Cell[17414, 548, 504, 14, 28, "Input"],
+Cell[17921, 564, 97, 1, 28, "Input"],
+Cell[18021, 567, 228, 5, 28, "Input"]
+}
+]
+*)
+
+(* End of internal cache information *)
