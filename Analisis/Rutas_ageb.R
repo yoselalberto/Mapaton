@@ -25,7 +25,6 @@ orden <- apply(sapply(ageb[["CVEGEO"]], FUN = "==", densidades$id),
                     MARGIN = 2, FUN = which)
 ageb$densidad <- unlist(densidades[orden, "densidad"])
 
-
 # visualizo las densidades en leaflet
 mapa_ageb <- leaflet(data = ageb) %>%
             setView(-99.168, 19.383, zoom = 12) %>%
@@ -33,11 +32,11 @@ mapa_ageb <- leaflet(data = ageb) %>%
                              options = tileOptions(minZoom = 11, maxZoom = 14)) %>%
             setMaxBounds(-99.3649, 19.0482,-98.9403, 19.6) %>%
             addPolygons(data = estatal, color = "darkgrey", fill = FALSE, opacity = 1,
-                        weight = 4) %>%
-            addPolygons(data = delegaciones, weight = 2, color = "darkgrey", 
+                        weight = 3) %>%
+            addPolygons(data = delegaciones, weight = 1.5, color = "darkgrey", 
                         fill = FALSE, opacity = 1) %>%
-            addPolygons(color = "#B40404", fillOpacity = ageb$densidad, weight = 1.5,
+            addPolygons(color = "#B40404", fillOpacity = ageb$densidad, weight = 1,
                         stroke = FALSE) %>%
-            addPolylines(data = mapaton, color = "#0431B4", opacity = 0.85, weight = 0.65)
+            addPolylines(data = mapaton, color = "#0431B4", opacity = 0.85, weight = 0.35)
 mapa_ageb
 

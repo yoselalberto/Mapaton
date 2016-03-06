@@ -48,7 +48,7 @@ mapa_auto <- leaflet(data = ageb) %>%
                          fill = FALSE, opacity = 1) %>%
              addPolygons(color = "#DF3A01", fillOpacity = ageb$per_auto, weight = 1.5,
                          stroke = FALSE) %>%
-             addPolylines(data = mapaton, color = "#0431B4", opacity = 0.85, weight = 0.65)
+             addPolylines(data = mapaton, color = "#0431B4", opacity = 0.85, weight = 0.35)
 mapa_auto
 
 
