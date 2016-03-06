@@ -11,12 +11,14 @@ estatal <- readOGR(dsn = "Datos", layer = "df_estatal") %>%
            geometry()
 delegaciones <- readOGR(dsn = "Datos", layer = "df_municipal") %>%
            geometry()
-# rutas mapaton
-mapaton <- readRDS("Datos/Rutas_mapaton.Rds")
 # ageb
 ageb <- readOGR("Datos", layer = "df_ageb_urb")
 ageb <- ageb[, "CVEGEO"]        
 densidades <- fromJSON("Datos/JSONes/agebDen.json")
+# rutas mapaton
+mapaton <- readRDS("Datos/Rutas_mapaton.Rds")
+proy <- CRS("+proj=longlat +ellps=WGS84 +no_defs")
+proj4string(mapaton) <- proy
 
 # macheo las ageb's con las rutas de transporte
 orden <- apply(sapply(ageb[["CVEGEO"]], FUN = "==", densidades$id),
@@ -38,7 +40,4 @@ mapa_ageb <- leaflet(data = ageb) %>%
                         stroke = FALSE) %>%
             addPolylines(data = mapaton, color = "#0431B4", opacity = 0.85, weight = 0.65)
 mapa_ageb
-
-
-
 
