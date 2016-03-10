@@ -14,13 +14,12 @@ shape <- read.csv("Datos/mapatonGTFS/shapes.txt", header = TRUE, row.names = NUL
 # preprocesado
 ids <- unique(shape$shape_id)
 shape_orig <- shape
-shape <- shape[shape$shape_id == ids[1],] # subset the data
+shape <- shape[shape$shape_id == ids[1],] 
 
-#
+# prueba
 shape_map <- list(x = shape$shape_pt_lon, y = shape$shape_pt_lat)
 shape_lines <- map2SpatialLines(shape_map, IDs = ids[1])
-plot(shape_lines) # success - this plots a single line!
-
+# resto de las lineas
 for(i in 2:length(ids)){
     shape <- shape_orig[shape_orig$shape_id == ids[i],]
     shape_map <- list(x = shape$shape_pt_lon, y = shape$shape_pt_lat)
@@ -29,3 +28,6 @@ for(i in 2:length(ids)){
 }
 # guardo el mapa en rds
 saveRDS(shape_lines, "Datos/Rutas_mapaton.Rds", compress = FALSE)
+
+
+

@@ -28,15 +28,11 @@ ageb$densidad <- unlist(densidades[orden, "densidad"])
 # visualizo las densidades en leaflet
 mapa_ageb <- leaflet(data = ageb) %>%
             setView(-99.168, 19.383, zoom = 12) %>%
-            addProviderTiles("CartoDB.PositronNoLabels",
-                             options = tileOptions(minZoom = 11, maxZoom = 14)) %>%
+            addProviderTiles("CartoDB.PositronNoLabels", options = tileOptions(minZoom = 11, maxZoom = 14)) %>%
             setMaxBounds(-99.3649, 19.0482,-98.9403, 19.6) %>%
-            addPolygons(data = estatal, color = "darkgrey", fill = FALSE, opacity = 1,
-                        weight = 3) %>%
-            addPolygons(data = delegaciones, weight = 1.5, color = "darkgrey", 
-                        fill = FALSE, opacity = 1) %>%
-            addPolygons(color = "#B40404", fillOpacity = ageb$densidad, weight = 1,
-                        stroke = FALSE) %>%
+            addPolygons(data = estatal, color = "darkgrey", fill = FALSE, opacity = 1, weight = 3) %>%
+            addPolygons(data = delegaciones, weight = 1.5, color = "darkgrey", fill = FALSE, opacity = 1) %>%
+            addPolygons(color = "#B40404", fillOpacity = ageb$densidad, weight = 1, stroke = FALSE) %>%
             addPolylines(data = mapaton, color = "#0431B4", opacity = 0.85, weight = 0.35)
 mapa_ageb
 

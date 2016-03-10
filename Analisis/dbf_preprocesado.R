@@ -17,7 +17,9 @@ descr <- read.csv("Datos/descriptores/desc_cpv2010.csv", header = TRUE,
 names(descr) <- c("campo", "descripcion")
 
 # busco las variables interesantes
-ind_auto <- descr$descripcion %>% str_detect("(auto)|(coche)") %>% which()
+ind_auto <- descr$descripcion %>%
+            str_detect("(auto)|(coche)") %>%
+            which()
 descr[ind_auto, ]
 autos <- descr[609, ]
 #saveRDS(autos, "Datos/Indice_densidad_autos.Rds", compress = FALSE)

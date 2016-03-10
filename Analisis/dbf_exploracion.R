@@ -19,9 +19,9 @@ mapaton <- readRDS("Datos/Rutas_mapaton.Rds")
 ind_auto <- readRDS("Datos/Indice_densidad_autos.Rds")
 # clave de la posecion de autos
 ageb_info <- read.csv("Datos/tablas/df_cpv2010_ageb_urb_viviendas.csv", 
-              header = TRUE, row.names = NULL, as.is = TRUE, 
-              na.strings = c("-8.0", "-6.0")) %>%
-              tbl_df
+             header = TRUE, row.names = NULL, as.is = TRUE, 
+             na.strings = c("-8.0", "-6.0")) %>%
+             tbl_df
 
 # extraigo las densidades
 info_auto <- ageb_info %>% 
@@ -50,5 +50,3 @@ mapa_auto <- leaflet(data = ageb) %>%
                          stroke = FALSE) %>%
              addPolylines(data = mapaton, color = "#0431B4", opacity = 0.85, weight = 0.35)
 mapa_auto
-
-
